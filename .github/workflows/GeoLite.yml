@@ -68,7 +68,7 @@ jobs:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       with:
         source_file: 'upload/GeoLite2-City.mmdb'
-        destination_repo: 'HDDolby/HDDolby'
+        destination_repo: 'HDDolby/HDdolby'
         destination_folder: 'resource'
         user_email: '${{ github.actor }}@users.noreply.github.com'
         user_name: '${{ github.actor }}'

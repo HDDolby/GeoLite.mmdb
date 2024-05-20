@@ -61,7 +61,19 @@ jobs:
         git commit -m "${{ env.TAG_NAME }}"
         git remote add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
         git push -f origin download
-
+        
+    - name: Push to "master" branch of HDDolby
+      uses: dmnemec/copy_file_to_another_repo_action@main
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      with:
+        source_file: 'upload/GeoLite2-City.mmdb'
+        destination_repo: 'HDDolby/HDDolby'
+        destination_folder: 'resource'
+        user_email: '${{ github.actor }}@users.noreply.github.com'
+        user_name: '${{ github.actor }}'
+        commit_message: 'Update GeoLite2-City.mmdb'
+        
     - name: Upload to Releases
       uses: softprops/action-gh-release@master
       env:

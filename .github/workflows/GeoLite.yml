@@ -62,13 +62,14 @@ jobs:
         git remote add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
         git push -f origin download
         
-    - name: Push to "master" branch of HDDolby
+    - name: Push to "Test" branch of HDdolby
       uses: dmnemec/copy_file_to_another_repo_action@main
       env:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       with:
         source_file: 'upload/GeoLite2-City.mmdb'
         destination_repo: 'HDDolby/HDdolby'
+        destination_branch: 'Test'
         destination_folder: 'resource'
         user_email: '${{ github.actor }}@users.noreply.github.com'
         user_name: '${{ github.actor }}'

@@ -67,13 +67,13 @@ jobs:
       env:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       with:
-        source_file: 'upload/*.mmdb'
+        source_file: 'upload/GeoLite2-{ASN,City}.mmdb'
         destination_repo: 'HDDolby/HDdolby'
         destination_branch: 'Test'
         destination_folder: 'resource'
         user_email: '${{ github.actor }}@users.noreply.github.com'
         user_name: '${{ github.actor }}'
-        commit_message: 'Update GeoLite2-*.mmdb'
+        commit_message: 'Update GeoLite2-ASN&GeoLite2-City.mmdb'
         
     - name: Upload to Releases
       uses: softprops/action-gh-release@master

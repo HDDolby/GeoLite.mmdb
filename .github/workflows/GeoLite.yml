@@ -74,6 +74,7 @@ jobs:
         user_email: '${{ github.actor }}@users.noreply.github.com'
         user_name: '${{ github.actor }}'
         commit_message: 'Update GeoLite2-ASN&GeoLite2-City.mmdb'
+        use_rsync: 'rsync -avh'
         
     - name: Upload to Releases
       uses: softprops/action-gh-release@master

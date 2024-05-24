@@ -46,13 +46,13 @@ jobs:
         wget -nv -O- "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-ASN&license_key=${{ secrets.LICENSE_KEY }}&suffix=tar.gz" | tar zxv
         wget -nv -O- "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-City&license_key=${{ secrets.LICENSE_KEY }}&suffix=tar.gz" | tar zxv
         wget -nv -O- "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-Country&license_key=${{ secrets.LICENSE_KEY }}&suffix=tar.gz" | tar zxv
-        mkdir -p upload
-        cp -v GeoLite*/*.mmdb upload
+        mkdir -p resource
+        cp -v GeoLite*/*.mmdb resource
         echo "TAG_NAME=$(date +"%Y.%m.%d")" >> $GITHUB_ENV
 
     - name: Push to "download" branch
       run: |
-        cd upload
+        cd resource
         git init
         git config user.name "${{ github.actor }}"
         git config user.email "${{ github.actor }}@users.noreply.github.com"
@@ -67,13 +67,13 @@ jobs:
       env:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       with:
-        source_file: 'upload/*'
+        source_file: 'resource'
         destination_repo: 'HDDolby/HDdolby'
         destination_branch: 'Test'
-        destination_folder: 'resource'
         user_email: '${{ github.actor }}@users.noreply.github.com'
         user_name: '${{ github.actor }}'
         commit_message: 'Update GeoLite2 all dbs'
+        use_rsync: 'true'
         
     - name: Upload to Releases
       uses: softprops/action-gh-release@master

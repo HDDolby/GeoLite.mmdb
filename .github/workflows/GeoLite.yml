@@ -67,14 +67,13 @@ jobs:
       env:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       with:
-        source_file: 'upload'
+        source_file: 'upload/*'
         destination_repo: 'HDDolby/HDdolby'
         destination_branch: 'Test'
         destination_folder: 'resource'
         user_email: '${{ github.actor }}@users.noreply.github.com'
         user_name: '${{ github.actor }}'
-        commit_message: 'Update GeoLite2-*'
-        use_rsync: 'true'
+        commit_message: 'Update GeoLite2 all dbs'
         
     - name: Upload to Releases
       uses: softprops/action-gh-release@master

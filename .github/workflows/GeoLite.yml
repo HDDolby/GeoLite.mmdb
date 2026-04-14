@@ -73,6 +73,19 @@ jobs:
         user_name: 'HDDolby'
         commit_message: 'Update GeoLite2 dbs'
         use_rsync: 'true'
+
+    - name: Push to "dev" branch of HDdolby
+      uses: dmnemec/copy_file_to_another_repo_action@main
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      with:
+        source_file: 'storage/geoip'
+        destination_repo: 'HDDolby/DolbyCore'
+        destination_branch: 'dev'
+        user_email: 'no-reply@hddolby.com'
+        user_name: 'HDDolby'
+        commit_message: 'Update GeoLite2 dbs'
+        use_rsync: 'true'
         
     - name: Upload to Releases
       uses: softprops/action-gh-release@master

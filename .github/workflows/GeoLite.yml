@@ -79,9 +79,10 @@ jobs:
       env:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       with:
-        source_file: 'storage/geoip'
+        source_file: 'resource'
         destination_repo: 'HDDolby/DolbyCore'
         destination_branch: 'dev'
+        destination_folder: 'storage/geoip'
         user_email: 'no-reply@hddolby.com'
         user_name: 'HDDolby'
         commit_message: 'Update GeoLite2 dbs'
